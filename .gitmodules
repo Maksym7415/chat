@@ -1,0 +1,3 @@
+[submodule "chat-api"]
+	path = chat-api
+	url = git@github.com:Maksym7415/chat-api.git
