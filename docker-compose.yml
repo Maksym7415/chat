@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nodejs:
+    image: maksim7415/chat:latest
+    container_name: chatnodejs
+    restart: unless-stopped
+    depends_on:
+      - db      
+    environment:
+      - DATABASE_URL=mysql://localhost:0000@db:3306/messenger
+      - PORT=8080
+    ports:
+      - "8081:8081"
+    
+  db:
+    image: "mysql:8"
+    restart: always
+    ports:
+      - 3307:3306
+    environment: 
+    - MYSQL_DATABASE=messenger
+    - MYSQL_USER=root
+    - MYSQL_PORT=3306
+    - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - my-db:/var/lib/mysql
+
+volumes:
+  my-db:
